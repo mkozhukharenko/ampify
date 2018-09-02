@@ -23,8 +23,10 @@ module.exports = function(html, baseUrl, extras = () => {}) {
   //remove all script tags. If any specific script tags are needed
   //they can be added back later. This gives us a clean slate though
   $('script').each(function() {
-    // Dont remove structured data though
-    if($(this).attr('type') !== 'application/ld+json'){
+    // Dont remove structured data though & json & 
+    const type = $(this).attr('type');
+    const customElement = $(this).attr('custom-element');
+    if(type !== 'application/ld+json' || type !== 'application/json' || customElement){
       $(this).remove();
     }
   });
