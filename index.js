@@ -27,7 +27,7 @@ module.exports = function(html, baseUrl, extras = () => {}) {
     const type = $(this).attr('type');
     const src = $(this).attr('src');
 
-    if (type === 'application/ld+json' || type === 'application/json' || src.includes('ampproject')){
+    if (type === 'application/ld+json' || type === 'application/json' || src && src.includes('ampproject')) {
       // dont remove ld+json / json / ampproject scripts
     } else {
       $(this).remove();
