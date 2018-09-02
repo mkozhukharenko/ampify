@@ -25,8 +25,11 @@ module.exports = function(html, baseUrl, extras = () => {}) {
   $('script').each(function() {
     // Dont remove structured data though & json & 
     const type = $(this).attr('type');
-    const customElement = $(this).attr('custom-element');
-    if(type !== 'application/ld+json' || type !== 'application/json' || customElement){
+    const src = $(this).attr('src');
+
+    if (type === 'application/ld+json' || type === 'application/json' || src.includes('ampproject')){
+      // dont remove ld+json / json / ampproject scripts
+    } else {
       $(this).remove();
     }
   });
